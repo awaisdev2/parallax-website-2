@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Parallax Website</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Add your custom styling here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0; /* Remove default margin */
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .parallax-section {
+            position: relative;
+            height: 100vh; /* Adjust height to match .parallax-container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-position-y: 0; /* Initial background position */
+            color: white;
+        }
+
+        .parallax-section:nth-child(odd) {
+            background-color: #333;
+        }
+
+        .parallax-section:nth-child(even) {
+            background-color: #555;
+        }
+
+        .parallax-content {
+            text-align: center;
+            padding: 50px;
+            opacity: 0; /* Initial opacity */
+            transition: opacity 0.5s ease; /* Add smooth transition */
+        }
+
+        .parallax-section.animate .parallax-content {
+            opacity: 1; /* Fade in the content when the section is scrolled into view */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-container">
+        <div class="parallax-section animate" style="background-image: url('https://images.wallpaperscraft.com/image/single/boy_night_headphones_145031_1600x900.jpg');">
+            <div class="parallax-content">
+                <h1>Welcome to Our Parallax Website</h1>
+                <p>Scroll down to explore</p>
+            </div>
+        </div>
+        <div class="parallax-section animate" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_ears_sky_994513_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="parallax-section animate" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_ears_buildings_1008833_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>Our Services</h2>
+                <p>Sed efficitur euismod leo, a scelerisque nisl tristique at.</p>
+            </div>
+        </div>
+        <div class="parallax-section animate" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_raincoat_trail_1002748_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us to learn more!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const parallaxSections = document.querySelectorAll('.parallax-section');
+            parallaxSections.forEach(section => {
+                const scrolled = window.pageYOffset;
+                section.style.backgroundPositionY = `${-scrolled * 0.3}px`;
+
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= window.innerHeight * 0.7) {
+                    section.classList.add('animate');
+                } else {
+                    section.classList.remove('animate');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Parallax Website</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Add your custom styling here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0; /* Remove default margin */
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+        }
+
+        .parallax-section {
+            position: relative;
+            height: 100vh; /* Adjust height to match .parallax-container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-position-y: 0; /* Initial background position */
+            color: white;
+        }
+
+        .parallax-section:nth-child(odd) {
+            background-color: #333;
+        }
+
+        .parallax-section:nth-child(even) {
+            background-color: #555;
+        }
+
+        .parallax-content {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-container">
+        <div class="parallax-section" style="background-image: url('https://images.wallpaperscraft.com/image/single/boy_night_headphones_145031_1600x900.jpg');">
+            <div class="parallax-content">
+                <h1>Welcome to Our Parallax Website</h1>
+                <p>Scroll down to explore</p>
+            </div>
+        </div>
+        <div class="parallax-section" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_ears_sky_994513_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>About Us</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        <div class="parallax-section" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_ears_buildings_1008833_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>Our Services</h2>
+                <p>Sed efficitur euismod leo, a scelerisque nisl tristique at.</p>
+            </div>
+        </div>
+        <div class="parallax-section" style="background-image: url('https://images.wallpaperscraft.com/image/single/girl_raincoat_trail_1002748_1600x900.jpg');">
+            <div class="parallax-content">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us to learn more!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const parallaxSections = document.querySelectorAll('.parallax-section');
+            parallaxSections.forEach(section => {
+                const scrolled = window.pageYOffset;
+                section.style.backgroundPositionY = `${-scrolled * 0.3}px`;
+            });
+        });
+    </script>
+</body>
+</html> -->

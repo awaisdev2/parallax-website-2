@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax website</title>
+</head>
+<style>
+    body{
+        overflow-x: hidden;
+    }
+    .parallax{
+        position: absolute;
+        height: 100%;
+    }
+    .parallax-item{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+    .p-item1{
+        background: url('m_1.png') center/cover no-repeat;
+    }
+    .p-item3{
+        background: url('m_3.png') bottom/100% no-repeat;
+        background-size: cover;
+        background-position: center;
+        z-index: 10;
+    }
+    .p-item4{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10000%;
+        height: 100%;
+        content: '';
+        background: url('fog.jpg') repeat-x;
+        background-size: contain;
+        background-position: center;
+        animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee{
+        0%{
+            transform: translate3d(0,0,0);
+        }
+        100%{
+            transform: translate3d(-200vw,0,0);
+        }
+    }
+
+    .p-item4::before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1000%;
+        height: 100%;
+        content: '';
+        background: url('fog.jpg') repeat-x;
+        background-size: contain;
+        background-position: center;
+        animation: marquee 20s linear infinite;
+        z-index: 5;
+    }
+
+    .container{
+        position: relative;
+        z-index: 5;
+        max-width: 1140px;
+        margin: 0 auto;
+        margin-top: 100vh;
+    }
+
+    .content-header{
+        font-family: sans-serif;
+        color: white;
+        text-align: center !important;
+        text-transform: uppercase;
+        margin-left: 400px;
+    }
+
+    .content-header h1{
+        font-size: 82px;
+        font-weight: 200;
+        margin-bottom: -40px;
+    }
+
+    .content-header h2{
+        font-size: 40px;
+        font-weight: 500;
+    }
+
+    .content{
+        width: 200px;
+        height: auto;
+        margin-right: 40px;
+    }
+
+</style>
+<body>
+    <div class="parallax">
+        <div class="parallax-item p-item1"></div>
+        <div class="parallax-item p-item2"></div>
+        <div class="parallax-item p-item3"></div>
+        <div class="parallax-item p-item4"></div>
+    </div>
+    <div class="container">
+        <div class="content-header">
+            <h1>Parallax design</h1>
+            <h2>The next level Parallax scrolling web design</h2>
+        </div>
+        <div class="content">
+            <img src="astro.png" alt="">
+        </div>
+    </div>
+    <script>
+       window.addEventListener('load', function() {
+
+window.addEventListener('scroll', function(e) {
+  
+  let s = this.scrollY;
+  let w = this.innerWidth;
+  let h = document.querySelector('.parallax').clientWidth;
+  let h_b = document.querySelector('.container').clientWidth;
+  let p = (s / h) * 100;
+  let p_b = (s / h_b) * 100;
+  let opas = 1 - 1 / 100 * p_b;
+  let z_1 = 1 + (w / 10000 * p_b);
+  document.querySelector('.p-item4').style.transform = `scale(${z_1})`;
+  document.querySelector('.p-item4').style.opacity = opas;
+  let z_2 = 1 + (w / 5000000 * p);
+  document.querySelector('.p-item1').style.transform = `scale(${z_2})`;
+  let hr = (w / 2000) * p_b;
+  let z_3 = 1 + (w * 0.000005 * p_b);
+  document.querySelector('.p-item2').style.transform = `translate3d(${hr}px, 0, 0) scale(${z_3})`;
+  let hr_2 = (w / 1500) * p_b;
+  let z_4 = 1 + (w * 0.00001 * p_b);
+  document.querySelector('.p-item3').style.transform = `translate3d(${hr_2}px, 0, 0) scale(${z_4})`;
+})
+
+});
+
+
+    </script>
+</body>
+</html>
